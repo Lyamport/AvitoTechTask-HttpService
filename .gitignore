@@ -1,0 +1,4 @@
+venv/
+addresses.db
+.idea/
+__pycache__/
