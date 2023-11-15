@@ -43,13 +43,11 @@ def add_address(ip):
     two_minutes_ago = datetime.now() - timedelta(minutes=2)
 
     count = session.query(Address).filter(Address.first_octets == get_first_and_last_octets(ip)[0], Address.time >= one_minute_ago).count()
-
     if count > 100:
         if session.query(BlackList).filter(BlackList.first_octets == get_first_and_last_octets(ip)[0], BlackList.time > two_minutes_ago).count() == 0:
             new_blacklist = BlackList(first_octets=get_first_and_last_octets(ip)[0])
             session.add(new_blacklist)
             session.commit()
-
     check = session.query(BlackList).filter(BlackList.first_octets == get_first_and_last_octets(ip)[0], BlackList.time > two_minutes_ago).count()
     if check > 0:
         return False

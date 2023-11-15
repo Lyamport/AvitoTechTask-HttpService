@@ -6,6 +6,7 @@ from service import check_valid_ip
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     user_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
@@ -15,9 +16,11 @@ def index():
         else:
             abort(429, 'Too Many Requests')
 
+
 @app.errorhandler(429)
 def handle_429_error(e):
     return "Error 429: Too Many Requests"
+
 
 if __name__=="__main__":
     app.run(debug=True, threaded=False)

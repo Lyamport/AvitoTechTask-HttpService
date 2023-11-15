@@ -1,4 +1,5 @@
 def check_valid_ip(ip):
+
     octets = str(ip).split('.')
     if len(octets) != 4:
         return False

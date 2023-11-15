@@ -2,3 +2,4 @@ venv/
 addresses.db
 .idea/
 __pycache__/
+.gitignore
